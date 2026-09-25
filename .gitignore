@@ -1,0 +1,5 @@
+# g++ output w/o param
+**/a.out
+**/a.exe
+# build from makefile
+**/dist
