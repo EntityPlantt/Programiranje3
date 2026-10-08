@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
 	std::cout << "Sorting " << n << " elements with " << k << " buckets\nseed = " << seed << ", elements are in [" << l << ", " << r << "]\n";
 	int a[n];
 	srand(seed);
-	for (int &i : a) i = rand() % (r - l + 1) - l;
+	for (int &i : a) i = rand() % (r - l + 1) + l;
 	std::cout << "START!" << std::endl;
 	auto startTime = steady_clock::now().time_since_epoch();
 	bucket_sort(a, n, k);
@@ -29,5 +29,5 @@ int main(int argc, char **argv) {
 	<< duration_cast<seconds>(time % 1min) << ' '
 	<< duration_cast<microseconds>(time % 1s) << "\nCheck sort... ";
 	if (is_sorted(a, a + n)) return cout << "Array is sorted!", 0;
-	return cout << "Array is NOT sorted!\n", 1;
+	return cout << "Array is NOT sorted!\n\n\nNOT SORTEEEEEEEEEEEEED!!!!!!!!!!\n", 1;
 }

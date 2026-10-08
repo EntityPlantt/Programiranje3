@@ -35,22 +35,52 @@ Bucket Sort е хеуристички алгоритам за сортирање
 Ако имаме еднакво (uniformly) дистрибуирани елементи, операциите ќе се $T(N+k+k\frac Nk\log\frac Nk)=T(N+k+N\log\frac Nk)=\Theta(N\log\frac Nk)$.
 
 ### Benchmark
-Ова е времето на сортирање $N$ псевдо-случајно генерирани елементи (семе `42`, $A_i\in[-10^6,10^6]$) со $k$ кофи. Елементите се uniformly распоредени.
+Ова е времето на сортирање $N$ псевдо-случајно генерирани елементи (семе `42`, $A_i\in[-10^9,10^9]$) со $k$ кофи. Елементите се uniformly распоредени.
 
 Команда за извршување:
 ```sh
-dist/benchmark 42 -1000000 1000000 $k $N
+dist/benchmark 42 -1000000000 1000000000 $k $N
 ```
 
 $N$|$k=1$|$k=2$|$k=1000$|$k=N$
 ---|-----|-----|--------|-----
-$100$|$12\mu s$|$14\mu s$|$54\mu s$|$21\mu s$
-$10^4$|$4685\mu s$|$4216\mu s$|$795\mu s$|$1909\mu s$
-$10^6$|
-$10^9$|
+$100$|$38\mu s$|$21\mu s$|$26\mu s$|$24\mu s$
+$10^4$|$4810\mu s$|$1522\mu s$|$2394\mu s$|$1790\mu s$
+$10^6$|$236ms$|$227ms$|$131ms$|$87ms$
+
+За $10^9$ елементи кодот не успева да креира низи (segmentation fault).
 
 > [!NOTE]
-> Да се доврши делов. Кодот не работи за одредени големини на низи (SIGSEGV), да се поправи
+> Да се внесат спецификации на компјутерот!
+
+Fastfetch:
+
+```
+                     ./o.                   entityplantt@desktop
+                   ./sssso-                 --------------------
+                 `:osssssss+-               OS: EndeavourOS x86_64
+               `:+sssssssssso/.             Kernel: Linux 7.2.9-arch1-1
+             `-/ossssssssssssso/.           Uptime: 4 hours, 59 mins
+           `-/+sssssssssssssssso+:`         Packages: 2 (appimage), 38 (flatpak), 1835 (pacman), 7 (snap)
+         `-:/+sssssssssssssssssso+/.        Shell: fish 4.9.3
+       `.://osssssssssssssssssssso++-       Display (MW221): 1680x1050 in 22", 60 Hz [External]
+      .://+ssssssssssssssssssssssso++:      Desktop Environment: KDE Plasma 6.7.5
+    .:///ossssssssssssssssssssssssso++:     Window Manager: KWin (Wayland)
+  `:////ssssssssssssssssssssssssssso+++.    WM Theme: Breeze
+`-////+ssssssssssssssssssssssssssso++++-    Theme: Breeze (Dark) [Qt], Breeze-Dark [GTK2], Breeze [GTK3/4]
+ `..-+oosssssssssssssssssssssssso+++++/`    Icons: breeze-dark [Qt], breeze-dark [GTK2/3/4]
+   ./++++++++++++++++++++++++++++++/:.      Font: Noto Sans (10pt) [Qt], Noto Sans (10pt) [GTK2/3/4]
+  `:::::::::::::::::::::::::------``        Cursor: breeze (24px)
+                                            Terminal: konsole 26.8.1
+                                            Terminal Font: Monocraft (10pt)
+                                            CPU: AMD Ryzen 5 2600 (12) @ 3.90 GHz
+                                            GPU: NVIDIA GeForce GTX 1060 6GB [Discrete]
+                                            Memory: 6.52 GiB / 15.54 GiB (42%)
+                                            Swap: 614.79 MiB / 8.00 GiB (8%)
+                                            Disk (/): 192.33 GiB / 221.57 GiB (87%) - btrfs
+                                            Local IP (enp8s0): 192.168.1.2/24
+                                            Locale: en_US.UTF-8
+```
 
 ## Варијанти и споредба со други алгоритми
 Како што го дефиниравме алгоритмот, тој зависи од два генерализирани параметри: бројот на кофи ($k$) и алгоритмот за сортирање на кофите ($F$). Затоа, Bucket Sort е многу сличен со други алгоритми бидејќи е генерализација на многу од нив:
